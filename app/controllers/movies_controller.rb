@@ -7,13 +7,19 @@ class MoviesController < ApplicationController
   end
 
   def index
+		@all_ratings = Movie.pluck(:rating).uniq.sort
+		if params[:ratings].blank?
+			@checked_ratings = @all_ratings
+		else
+			@checked_ratings = params[:ratings].keys
+		end
 		@sort = params[:sort]
 		if params[:sort] == 'title'
-			@movies = Movie.order('title').all
+			@movies = Movie.order('title').find_all_by_rating(@checked_ratings)
 		elsif params[:sort] == 'release_date'
-			@movies = Movie.order('release_date').all
+			@movies = Movie.order('release_date').find_all_by_rating(@checked_ratings)
 		else
-			@movies = Movie.all
+			@movies = Movie.find_all_by_rating(@checked_ratings)
 		end
   end
 

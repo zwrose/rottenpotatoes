@@ -17,4 +17,8 @@ module MoviesHelper
 			"lolite"
 		end
 	end
+	def checked?(checked_ratings, rating)
+		checked_ratings.include?(rating)
+
+	end
 end

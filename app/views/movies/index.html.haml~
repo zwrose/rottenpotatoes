@@ -5,10 +5,10 @@
   %thead
     %tr
       %th{ :class => title_active?(@sort) }
-        %a{ :href => movies_path({ :sort =>'title' }), :id => 'title_header' } Movie Title
+        %a{ :href => movies_path({ :sort =>'title' }) } Movie Title
       %th Rating
       %th{ :class => release_date_active?(@sort) }
-        %a{ :href => movies_path({ :sort =>'release_date' }), :id => 'title_header' } Release Date
+        %a{ :href => movies_path({ :sort =>'release_date' }) } Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|

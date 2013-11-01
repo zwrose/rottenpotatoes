@@ -4,7 +4,7 @@ module MoviesHelper
     count.odd? ?  "odd" :  "even"
   end
 	def title_active?(key)
-		if key == 'title'
+		if key == 'titles'
 			"hilite"
 		else
 			"lolite"

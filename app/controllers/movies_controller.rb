@@ -7,6 +7,23 @@ class MoviesController < ApplicationController
   end
 
   def index
+		#debugger
+		if session.include?(:params)
+			unless session[:params].eql? params
+				params.each_key do |p|
+					unless session[:params][p] == params[p]
+						session[:params][p] = params[p]
+					end
+				end
+				#debugger
+				flash.keep
+				redirect_to movies_path(session[:params])
+			end
+		else
+			session[:params] = params
+		end
+		
+
 		@all_ratings = Movie.pluck(:rating).uniq.sort
 		if params[:ratings].blank?
 			@checked_ratings = @all_ratings
